@@ -46,8 +46,125 @@ public class Jugador {
 		return pieza;
 	}
 
-	
-	
-	
+	public void juega(Tablero t, int i, int j) {
+		if(npc) {
+			movimiento(t);
+		}else {
+			t.setTablero(this.pieza,i,j);
+		}
+	}
+	public void movimiento(Tablero t) {
+		int fi=0,fj=0;
+		char tablero[][]=t.getTablero();
+		for(int n = 0;n<3;n++) {
+			for(int m=0;m<3;m++) {
+				if(tablero[n][m]!=this.pieza && tablero[n][m]!=getReverse()) {
+					fi=n;
+					fj=m;
+				}
+			}
+		}
+		if(tablero[1][1]==0) {
+			fi=1;
+			fj=1;
+		}else {//miramos si ganamos
+			for (int i=0;i<3;i++) {//recorrido horizontal comprueba columnas
+				if(tablero[i][0]==this.pieza) {
+					boolean best = false;
+					if(nextMov(t,i,1)) {
+						if (tablero[i][2]!=getReverse()) {
+							fi=i;
+							fj=2;
+						}
+					}
+					else if(nextMov(t,i,2)) {
+						if (tablero[i][1]!=getReverse()) {
+							fi=i;
+							fj=1;
+						}
+					}
+				}else if(tablero[1][0]==this.pieza) {
+					if(nextMov(t,i,2)) {
+						if (tablero[i][0]!=getReverse()) {
+							fi=i;
+							fj=0;
+						}
+					}
+				}
+			}
+			for (int j=0;j<3;j++) {//recorrido vertical comprueba filas
+				if(tablero[0][j]==this.pieza) {
+					boolean best = false;
+					if(nextMov(t,j,1)) {
+						if (tablero[2][j]!=getReverse()) {
+							fi=2;
+							fj=j;
+						}
+					}
+					else if(nextMov(t,2,j)) {
+						if (tablero[j][1]!=getReverse()) {
+							fi=1;
+							fj=j;
+						}
+					}
+				}else if(tablero[0][1]==this.pieza) {
+					if(nextMov(t,2,j)) {
+						if (tablero[1][j]!=getReverse()) {
+							fi=0;
+							fj=j;
+						}
+					}
+				}
+			}
+			//comprobamos diagonales
+			if(tablero[0][0]==this.pieza) {
+				if(nextMov(t,1,1) && tablero[2][2]!=getReverse()){
+					fi=2;
+					fj=2;
+				}else if(nextMov(t,2,2) && tablero[1][1]!=getReverse()){
+					fi=1;
+					fj=1;
+				}
+			}else {
+				if(tablero[1][1]==this.pieza) {
+					if(nextMov(t,2,2) && tablero[0][0]!=getReverse()){
+						fi=0;
+						fj=0;
+					}
+				}
+				if(tablero[0][0]==this.pieza) {
+					if(nextMov(t,1,1) && tablero[2][2]!=getReverse()){
+						fi=2;
+						fj=2;
+					}else if(nextMov(t,2,2) && tablero[1][1]!=getReverse()){
+						fi=1;
+						fj=1;
+					}
+				}else if(tablero[2][0]==this.pieza) {
+					if(nextMov(t,1,1) && tablero[0][2]!=getReverse()){
+						fi=0;
+						fj=0;
+					}else if(nextMov(t,0,2) && tablero[1][1]!=getReverse()){
+						fi=1;
+						fj=1;
+					}
+				}else {
+					if(tablero[1][1]==this.pieza && nextMov(t,0,2) && tablero[2][0]!=getReverse()){
+						fi=2;
+						fj=0;
+					}
+				}
+			}
+		}
+		t.setTablero(this.pieza,fi,fj);
+	}
+	public boolean nextMov(Tablero t,int i, int j) {
+		if(t.getTablero()[i][0]==this.pieza) return true;
+		else return false;
+	}
+	private char getReverse() {
+		if(this.pieza=='X') return 'O';
+		else return 'X';
+	}
 
 }
