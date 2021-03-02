@@ -46,6 +46,7 @@ public class Jugador {
 		return pieza;
 	}
 
+
 	public void juega(Tablero t, int i, int j) {
 		if(npc) {
 			movimiento(t);
@@ -166,5 +167,6 @@ public class Jugador {
 		if(this.pieza=='X') return 'O';
 		else return 'X';
 	}
+
 
 }
