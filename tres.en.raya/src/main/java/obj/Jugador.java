@@ -45,7 +45,15 @@ public class Jugador {
 	public char getPieza() {
 		return pieza;
 	}
-
+	
+	public void jugar(Tablero t, int i,int j) {
+		t.setTablero(pieza, i, j);
+		t.switchTurno();
+	}
+	
+	public void jugar(Tablero t) {
+		
+	}
 	
 	
 	
