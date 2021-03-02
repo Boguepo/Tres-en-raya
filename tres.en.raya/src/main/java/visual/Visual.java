@@ -1,16 +1,11 @@
 package visual;
 
-import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
-import javax.swing.UIManager;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -24,7 +19,6 @@ public class Visual extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField jugador1;
 	private JTextField jugador2;
 
@@ -113,6 +107,7 @@ public class Visual extends JFrame {
 		jugador1.setColumns(10);
 		
 		jugador2 = new JTextField();
+		jugador2.setText("g");
 		jugador2.setBounds(601, 338, 139, 20);
 		contentPane.add(jugador2);
 		jugador2.setColumns(10);
@@ -139,8 +134,10 @@ public class Visual extends JFrame {
 		ButtonGroup bgroup=new ButtonGroup();
 		bgroup.add(rdbtnHumano);
 		bgroup.add(rdbtnCPU);
+		
+		ButtonGroup bgroup2=new ButtonGroup();
 		bgroup.add(rdbtnHumano2);
-		bgroup.add(rdbtnCPU);
+		bgroup.add(rdbtnCPU2);
 		
 		//LABELS
 		JLabel lblNewLabel_2 = new JLabel("Tipo:");
