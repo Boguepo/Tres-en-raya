@@ -1,6 +1,12 @@
 package visual;
 
 import javax.swing.JFrame;
+
+import javax.swing.JPanel;
+
+import javax.swing.JButton;
+
+
 import javax.swing.JPanel;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -37,6 +43,7 @@ public class Visual extends JFrame {
 		setTitle("TRES EN RAYA");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setBounds(100, 100, 1013, 607);
 
 		contentPane = new JPanel();
@@ -272,3 +279,4 @@ public class Visual extends JFrame {
 	
 	
 }
+
