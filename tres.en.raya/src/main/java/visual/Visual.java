@@ -1,10 +1,9 @@
 package visual;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
+
 
 public class Visual extends JFrame {
 
@@ -19,12 +18,16 @@ public class Visual extends JFrame {
 	 */
 	public Visual() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1042, 607);
 		
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
+		
+		contentPane.setLayout(null);
 		setContentPane(contentPane);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setBounds(39, 39, 120, 120);
+		contentPane.add(btnNewButton);
 	}
 
 }
