@@ -151,18 +151,16 @@ public class Visual extends JFrame {
 				}
 				op.t.switchTurno();
 				if(op.t.isTurno()) {
+					op.t.setTablero('X', 0, 0);
 					lblMensaje.setText(jugador2.getText()+", te toca mover");
 				}else {
+					op.t.setTablero('O', 0, 0);
 					lblMensaje.setText(jugador1.getText()+", te toca mover");
 				}
 				
 				btn1_1.setEnabled(false);
 				contador++;
-				
 			}
-
-			
-
 		});
 		btn1_1.setFont(new Font("Comic Sans MS", Font.BOLD, 99));
 		btn1_1.setBounds(35, 47, 139, 139);

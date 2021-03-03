@@ -33,9 +33,6 @@ public class Tablero {
 		return turno;
 	}
 
-	/**
-	 * @param turno the turno to set
-	 */
 	public void switchTurno() {
 		this.turno = !this.turno;
 	}
