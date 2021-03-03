@@ -263,13 +263,19 @@ public class Visual extends JFrame {
 	}
 	
 	protected void validarJugada(JButton btn, JLabel lblMensaje, JButton[] btnArray, int i, int j) {
-		String aux = new String();
-		aux = tablero.validaTurno();
-		if(aux.equals("O")) {
-			btn.setText("O");
+		btn.setText(tablero.validaTurno());
+
+		
+		if(tablero.isTurno()) {
+			tablero.setTablero('X', i, j);
+			lblMensaje.setText(jugador2.getText()+", te toca mover");
 		}else {
-			btn.setText("X");
+			tablero.setTablero('O', i, j);
+			lblMensaje.setText(jugador1.getText()+", te toca mover");
 		}
+		
+
+		tablero.switchTurno();
 		if(tablero.hayGanador()) {
 			if(tablero.isTurno()) {
 				lblMensaje.setText("El ganador es: "+jugador2.getText());
@@ -282,15 +288,6 @@ public class Visual extends JFrame {
 			lblMensaje.setText("Empate");
 			
 		}
-		tablero.switchTurno();
-		if(tablero.isTurno()) {
-			tablero.setTablero('X', i, j);
-			lblMensaje.setText(jugador2.getText()+", te toca mover");
-		}else {
-			tablero.setTablero('O', i, j);
-			lblMensaje.setText(jugador1.getText()+", te toca mover");
-		}
-		
 		btn.setEnabled(false);
 		contador++;
 		
