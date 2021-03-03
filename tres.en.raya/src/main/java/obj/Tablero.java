@@ -40,7 +40,15 @@ public class Tablero {
 		this.turno = !this.turno;
 	}
 	
-	
+	/*public boolean hayGanador() {
+		boolean hayGanador = false;
+		if()
+		return false;
+	}
+	public boolean nextMov(Tablero t,int i, int j, char pieza) {
+		if(tablero[i][0]==pieza) return true;
+		else return false;
+	}*/
 	
 	
 }

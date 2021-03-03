@@ -71,7 +71,6 @@ public class Jugador {
 		}else {//miramos si ganamos
 			for (int i=0;i<3;i++) {//recorrido horizontal comprueba columnas
 				if(tablero[i][0]==this.pieza) {
-					boolean best = false;
 					if(nextMov(t,i,1)) {
 						if (tablero[i][2]!=getReverse()) {
 							fi=i;
@@ -95,7 +94,6 @@ public class Jugador {
 			}
 			for (int j=0;j<3;j++) {//recorrido vertical comprueba filas
 				if(tablero[0][j]==this.pieza) {
-					boolean best = false;
 					if(nextMov(t,j,1)) {
 						if (tablero[2][j]!=getReverse()) {
 							fi=2;
@@ -118,7 +116,7 @@ public class Jugador {
 				}
 			}
 			//comprobamos diagonales
-			if(tablero[0][0]==this.pieza) {
+			if(tablero[0][0]==this.pieza) {// diagonal en \
 				if(nextMov(t,1,1) && tablero[2][2]!=getReverse()){
 					fi=2;
 					fj=2;
@@ -133,7 +131,7 @@ public class Jugador {
 						fj=0;
 					}
 				}
-				if(tablero[0][0]==this.pieza) {
+				/*if(tablero[0][0]==this.pieza) {
 					if(nextMov(t,1,1) && tablero[2][2]!=getReverse()){
 						fi=2;
 						fj=2;
@@ -141,7 +139,7 @@ public class Jugador {
 						fi=1;
 						fj=1;
 					}
-				}else if(tablero[2][0]==this.pieza) {
+				}else*/ if(tablero[2][0]==this.pieza) {// diagonal en /
 					if(nextMov(t,1,1) && tablero[0][2]!=getReverse()){
 						fi=0;
 						fj=0;
@@ -160,7 +158,7 @@ public class Jugador {
 		t.setTablero(this.pieza,fi,fj);
 	}
 	public boolean nextMov(Tablero t,int i, int j) {
-		if(t.getTablero()[i][0]==this.pieza) return true;
+		if(t.getTablero()[i][j]==this.pieza) return true;
 		else return false;
 	}
 	private char getReverse() {
