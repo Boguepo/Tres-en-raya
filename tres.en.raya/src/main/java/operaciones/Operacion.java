@@ -1,5 +1,8 @@
 package operaciones;
 
+<<<<<<< HEAD
+public class Operacion {
+=======
 import javax.swing.JButton;
 
 import obj.Jugador;
@@ -59,5 +62,6 @@ public class Operacion {
 
 
 	
+>>>>>>> refs/remotes/origin/dev1
 
 }
