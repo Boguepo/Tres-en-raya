@@ -1,5 +1,7 @@
 package obj;
 
+import javax.swing.JButton;
+
 public class Jugador {
 	
 	private String nombre;
@@ -47,14 +49,19 @@ public class Jugador {
 	}
 
 
-	public void juega(Tablero t, int i, int j) {
+	public int[] juega(Tablero t, int i, int j) {
+		int[] res = new int[2];
 		if(npc) {
-			movimiento(t);
+			
+			res = movimiento(t);
+			
 		}else {
 			t.setTablero(this.pieza,i,j);
 		}
+		return res;
+	
 	}
-	public void movimiento(Tablero t) {
+	public int[] movimiento(Tablero t) {
 		int fi=0,fj=0;
 		char tablero[][]=t.getTablero();
 		for(int n = 0;n<3;n++) {
@@ -156,6 +163,10 @@ public class Jugador {
 			}
 		}
 		t.setTablero(this.pieza,fi,fj);
+		int[] res = new int[2];
+		res[0] = fi;
+		res[1] = fj;
+		return res;
 	}
 	public boolean nextMov(Tablero t,int i, int j) {
 		if(t.getTablero()[i][j]==this.pieza) return true;
