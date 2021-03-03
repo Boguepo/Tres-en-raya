@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 
 import obj.Tablero;
 
-
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import java.awt.Font;
@@ -28,6 +27,7 @@ public class Visual extends JFrame {
 	private JTextField jugador1;
 	private JTextField jugador2;
 	private Tablero tablero;
+
 	/**
 	 * Create the frame.
 	 */
@@ -78,7 +78,7 @@ public class Visual extends JFrame {
 		ButtonGroup bgroup = new ButtonGroup();
 		bgroup.add(rdbtnHumano);
 		bgroup.add(rdbtnCPU);
-		
+
 		ButtonGroup bgroup2 = new ButtonGroup();
 		bgroup2.add(rdbtnHumano2);
 		bgroup2.add(rdbtnCPU2);
@@ -116,7 +116,6 @@ public class Visual extends JFrame {
 		lblMensaje.setBounds(543, 76, 197, 29);
 		contentPane.add(lblMensaje);
 
-		
 		JButton btn1_1 = new JButton("");
 		JButton btn1_2 = new JButton("");
 		JButton btn1_3 = new JButton("");
@@ -126,14 +125,14 @@ public class Visual extends JFrame {
 		JButton btn3_1 = new JButton("");
 		JButton btn3_2 = new JButton("");
 		JButton btn3_3 = new JButton("");
-		JButton[] btnArray = {btn1_1,btn1_2,btn1_3,btn2_1,btn2_2,btn2_3,btn3_1,btn3_2,btn3_3};
-		
+		JButton[][] btnArray = { { btn1_1, btn1_2, btn1_3 }, { btn2_1, btn2_2, btn2_3 }, { btn3_1, btn3_2, btn3_3 } };
+
 		// Botón en la posición [1][1]
 		btn1_1.setEnabled(false);
 		btn1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validarJugada(btn1_1, lblMensaje, btnArray, 0, 0);
-				
+
 			}
 		});
 		btn1_1.setFont(new Font("Comic Sans MS", Font.BOLD, 99));
@@ -141,10 +140,10 @@ public class Visual extends JFrame {
 		contentPane.add(btn1_1);
 
 		// Botón en la posición [1][2]
-		
+
 		btn1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn1_2, lblMensaje, btnArray, 0, 1);
+				validarJugada(btn1_2, lblMensaje, btnArray, 1, 0);
 			}
 		});
 		btn1_2.setEnabled(false);
@@ -155,7 +154,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [1][3]
 		btn1_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn1_3, lblMensaje, btnArray, 0, 2);
+				validarJugada(btn1_3, lblMensaje, btnArray, 2, 0);
 			}
 		});
 		btn1_3.setEnabled(false);
@@ -166,7 +165,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [2][1]
 		btn2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn2_1, lblMensaje, btnArray, 1, 0);
+				validarJugada(btn2_1, lblMensaje, btnArray, 0, 1);
 			}
 		});
 		btn2_1.setEnabled(false);
@@ -177,7 +176,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [2][2]
 		btn2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn2_2, lblMensaje, btnArray, 1,1);
+				validarJugada(btn2_2, lblMensaje, btnArray, 1, 1);
 			}
 		});
 		btn2_2.setEnabled(false);
@@ -188,7 +187,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [2][3]
 		btn2_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn2_3, lblMensaje, btnArray, 1, 2);
+				validarJugada(btn2_3, lblMensaje, btnArray, 2, 1);
 			}
 		});
 		btn2_3.setEnabled(false);
@@ -199,7 +198,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [3][1]
 		btn3_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn3_1, lblMensaje, btnArray, 2, 0);
+				validarJugada(btn3_1, lblMensaje, btnArray, 0, 2);
 			}
 		});
 		btn3_1.setEnabled(false);
@@ -210,7 +209,7 @@ public class Visual extends JFrame {
 		// Botón en la posición [3][2]
 		btn3_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn3_2, lblMensaje, btnArray, 2,1);
+				validarJugada(btn3_2, lblMensaje, btnArray, 1, 2);
 			}
 		});
 		btn3_2.setEnabled(false);
@@ -221,14 +220,13 @@ public class Visual extends JFrame {
 		// Botón en la posición [3][3]
 		btn3_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarJugada(btn3_3, lblMensaje, btnArray, 2 , 2);
+				validarJugada(btn3_3, lblMensaje, btnArray, 2, 2);
 			}
 		});
 		btn3_3.setEnabled(false);
 		btn3_3.setFont(new Font("Comic Sans MS", Font.BOLD, 99));
 		btn3_3.setBounds(310, 320, 139, 139);
 		contentPane.add(btn3_3);
-		
 
 		// Botón NUEVA PARTIDA
 		JButton btnNuevaPartida = new JButton("Nueva Partida");
@@ -236,81 +234,140 @@ public class Visual extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				boolean npc1 = true;
 				boolean npc2 = true;
-				
-				if(rdbtnHumano.isSelected()) {
+
+				if (rdbtnHumano.isSelected()) {
 					npc1 = false;
-				}else if(rdbtnCPU.isSelected()) {
+				} else if (rdbtnCPU.isSelected()) {
 					npc1 = true;
 				}
-				
-				if(rdbtnHumano2.isSelected()) {
+
+				if (rdbtnHumano2.isSelected()) {
 					npc2 = false;
-				}else if(rdbtnCPU2.isSelected()) {
+				} else if (rdbtnCPU2.isSelected()) {
 					npc2 = true;
 				}
-				tablero = new Tablero(jugador1.getText(),npc1,false,jugador2.getText(),npc2,true);
+				tablero = new Tablero(jugador1.getText(), npc1, false, jugador2.getText(), npc2, true);
 				contador = 0;
 				resetGame(btnArray, lblMensaje);
 				
+				boolean act = npc1;
+				
+				while(act && !tablero.hayGanador()) {
+					int[] res = new int[2];
+					res = tablero.getP1().juega(tablero,0,0);
+					btnArray[res[0]][res[1]].setText(tablero.validaTurno());
+					btnArray[res[0]][res[1]].setEnabled(false);
+					if (tablero.hayGanador()) {
+						validaGanador(lblMensaje, btnArray);
+					}
+					tablero.switchTurno();
+					if(npc2) {
+						res = tablero.getP2().juega(tablero,0,0);
+						btnArray[res[0]][res[1]].setText(tablero.validaTurno());
+						btnArray[res[0]][res[1]].setEnabled(false);
+						if (tablero.hayGanador()) {
+							validaGanador(lblMensaje, btnArray);
+						}
+						tablero.switchTurno();
+					}
+					act = npc2;
+				}
+				
+
 			}
 
-			
 		});
 		btnNuevaPartida.setBackground(SystemColor.activeCaption);
 		btnNuevaPartida.setBounds(674, 34, 118, 23);
 		contentPane.add(btnNuevaPartida);
 
 	}
-	
-	protected void validarJugada(JButton btn, JLabel lblMensaje, JButton[] btnArray, int i, int j) {
-		String aux = new String();
-		aux = tablero.validaTurno();
-		if(aux.equals("O")) {
-			btn.setText("O");
-		}else {
-			btn.setText("X");
-		}
-		if(tablero.hayGanador()) {
-			if(tablero.isTurno()) {
-				lblMensaje.setText("El ganador es: "+jugador2.getText());
-			}else {
-				lblMensaje.setText("El ganador es: "+jugador1.getText());
+
+	protected void validarJugada(JButton btn, JLabel lblMensaje, JButton[][] btnArray, int i, int j) {
+
+		btn.setText(tablero.validaTurno());
+
+		int[] res = new int[2];
+
+		if (tablero.isTurno()) {
+
+			tablero.getP2().juega(tablero, i, j);
+			if (tablero.hayGanador()) {
+				validaGanador(lblMensaje, btnArray);
+			} else if (tablero.getP1().isNpc()) {
+				tablero.switchTurno();
+				res = tablero.getP1().juega(tablero, i, j);
+				btnArray[res[0]][res[1]].setText(tablero.validaTurno());
+				btnArray[res[0]][res[1]].setEnabled(false);
+				if (tablero.hayGanador()) {
+					validaGanador(lblMensaje, btnArray);
+				}
+			} else {
+				lblMensaje.setText(jugador1.getText() + ", te toca mover");
 			}
-			setBtnOff(btnArray);
+
+		} else {
+
+			tablero.getP1().juega(tablero, i, j);
+			if (tablero.hayGanador()) {
+				validaGanador(lblMensaje, btnArray);
+			} else if (tablero.getP2().isNpc()) {
+				tablero.switchTurno();
+				res = tablero.getP2().juega(tablero, i, j);
+				btnArray[res[0]][res[1]].setText(tablero.validaTurno());
+				btnArray[res[0]][res[1]].setEnabled(false);
+				if (tablero.hayGanador()) {
+					validaGanador(lblMensaje, btnArray);
+				}
+			} else {
+				lblMensaje.setText(jugador2.getText() + ", te toca mover");
+			}
+
 		}
-		if(contador == 9) {
-			lblMensaje.setText("Empate");
-			
-		}
+
 		tablero.switchTurno();
-		if(tablero.isTurno()) {
-			tablero.setTablero('X', i, j);
-			lblMensaje.setText(jugador2.getText()+", te toca mover");
-		}else {
-			tablero.setTablero('O', i, j);
-			lblMensaje.setText(jugador1.getText()+", te toca mover");
-		}
-		
-		btn.setEnabled(false);
 		contador++;
+		if (contador == 9) {
+			lblMensaje.setText("Empate");
+
+		}
+
+		btn.setEnabled(false);
 		
+
 	}
 
-	private void setBtnOff(JButton[] btnArray) {
-		for (int i = 0; i < btnArray.length; i++) {
-			btnArray[i].setEnabled(false);
+	private void validaGanador(JLabel msg, JButton[][] btnArray) {
+
+		if (tablero.isTurno()) {
+			msg.setText("El ganador es: " + jugador2.getText());
+		} else {
+			msg.setText("El ganador es: " + jugador1.getText());
 		}
-		
+		setBtnOff(btnArray);
+
 	}
-	
-	private void resetGame(JButton[] btnArray, JLabel msg) {
-		for (int i = 0; i < btnArray.length; i++) {
-			btnArray[i].setEnabled(true);
-			btnArray[i].setText("");
-			msg.setText("");
+
+	private void setBtnOff(JButton[][] btnArray) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				btnArray[i][j].setEnabled(false);
+
+			}
 		}
-		
+
 	}
-	
-	
+
+	private void resetGame(JButton[][] btnArray, JLabel msg) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				btnArray[i][j].setEnabled(true);
+				btnArray[i][j].setText("");
+				msg.setText(jugador1.getText() + ", te toca mover");
+			}
+
+		}
+
+	}
+
 }
