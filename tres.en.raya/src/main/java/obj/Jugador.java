@@ -64,7 +64,7 @@ public class Jugador {
 	public int[] movimiento(Tablero t) {
 		int fi=0,fj=0;
 		char tablero[][]=t.getTablero();
-		for(int n = 0;n<3;n++) {
+		for(int n = 0;n<3;n++) {//inicializamos las coordenadas al primer elemento vacío que encontrmos
 			for(int m=0;m<3;m++) {
 				if(tablero[n][m]!=this.pieza && tablero[n][m]!=getReverse()) {
 					fi=n;
@@ -72,7 +72,7 @@ public class Jugador {
 				}
 			}
 		}
-		if(tablero[1][1]==0) {
+		if(tablero[1][1]==0) {//si el centro del tablero está vacío colocamos
 			fi=1;
 			fj=1;
 		}else {//miramos si ganamos
@@ -90,7 +90,7 @@ public class Jugador {
 							fj=1;
 						}
 					}
-				}else if(tablero[1][0]==this.pieza) {
+				}else if(tablero[i][1]==this.pieza) {
 					if(nextMov(t,i,2)) {
 						if (tablero[i][0]!=getReverse()) {
 							fi=i;
@@ -101,21 +101,21 @@ public class Jugador {
 			}
 			for (int j=0;j<3;j++) {//recorrido vertical comprueba filas
 				if(tablero[0][j]==this.pieza) {
-					if(nextMov(t,j,1)) {
+					if(nextMov(t,1,j)) {
 						if (tablero[2][j]!=getReverse()) {
 							fi=2;
 							fj=j;
 						}
 					}
 					else if(nextMov(t,2,j)) {
-						if (tablero[j][1]!=getReverse()) {
+						if (tablero[1][j]!=getReverse()) {
 							fi=1;
 							fj=j;
 						}
 					}
-				}else if(tablero[0][1]==this.pieza) {
+				}else if(tablero[1][j]==this.pieza) {
 					if(nextMov(t,2,j)) {
-						if (tablero[1][j]!=getReverse()) {
+						if (tablero[0][j]!=getReverse()) {
 							fi=0;
 							fj=j;
 						}
@@ -149,7 +149,7 @@ public class Jugador {
 				}else*/ if(tablero[2][0]==this.pieza) {// diagonal en /
 					if(nextMov(t,1,1) && tablero[0][2]!=getReverse()){
 						fi=0;
-						fj=0;
+						fj=2;
 					}else if(nextMov(t,0,2) && tablero[1][1]!=getReverse()){
 						fi=1;
 						fj=1;
