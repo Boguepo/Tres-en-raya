@@ -27,6 +27,7 @@ public class Visual extends JFrame {
 	private JTextField jugador1;
 	private JTextField jugador2;
 	private Tablero tablero;
+	private Color triste;
 
 	/**
 	 * Create the frame.
@@ -138,7 +139,7 @@ public class Visual extends JFrame {
 		btn1_1.setFont(new Font("Comic Sans MS", Font.BOLD, 99));
 		btn1_1.setBounds(35, 47, 139, 139);
 		contentPane.add(btn1_1);
-
+		triste = btn1_1.getBackground();
 		// Botón en la posición [1][2]
 
 		btn1_2.addActionListener(new ActionListener() {
@@ -360,6 +361,10 @@ public class Visual extends JFrame {
 			msg.setText("El ganador es: " + jugador1.getText());
 		}
 		setBtnOff(btnArray);
+		int[][] ganador = tablero.getLineaGanadora();
+		btnArray[ganador[0][0]][ganador[0][1]].setBackground(Color.green);
+		btnArray[ganador[1][0]][ganador[1][1]].setBackground(Color.green);
+		btnArray[ganador[2][0]][ganador[2][1]].setBackground(Color.green);
 
 	}
 
@@ -367,7 +372,7 @@ public class Visual extends JFrame {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				btnArray[i][j].setEnabled(false);
-
+				
 			}
 		}
 
@@ -377,6 +382,7 @@ public class Visual extends JFrame {
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				btnArray[i][j].setEnabled(true);
+				btnArray[i][j].setBackground(triste);
 				btnArray[i][j].setText("");
 				msg.setText(jugador1.getText() + ", te toca mover");
 			}
