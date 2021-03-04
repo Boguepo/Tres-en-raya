@@ -94,11 +94,11 @@ public class Tablero {
 		}
 	}
 
-	private boolean comprobarColum() {
+	private boolean comprobarFila() {
 		if(tablero[0][0] == tablero[1][0] && tablero[0][0] == tablero[2][0] && tablero[0][0] != 0) {
 			return true;
 			
-		}else if(tablero[0][1] == tablero[1][1] && tablero[0][1] == tablero[1][2] && tablero[0][1] != 0) {
+		}else if(tablero[0][1] == tablero[1][1] && tablero[0][1] == tablero[2][1] && tablero[0][1] != 0) {
 			return true;
 		}else if(tablero[0][2] == tablero[1][2] && tablero[0][2] == tablero[2][2] && tablero[0][2] != 0) {
 			return true;
@@ -108,7 +108,7 @@ public class Tablero {
 		
 	}
 
-	private boolean comprobarFila() {
+	private boolean comprobarColum() {
 		if(tablero[0][0] == tablero[0][1] && tablero[0][0] == tablero[0][2] && tablero[0][0] != 0) {
 			return true;
 			

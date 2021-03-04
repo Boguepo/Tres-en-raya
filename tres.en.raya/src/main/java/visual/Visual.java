@@ -125,7 +125,7 @@ public class Visual extends JFrame {
 		JButton btn3_1 = new JButton("");
 		JButton btn3_2 = new JButton("");
 		JButton btn3_3 = new JButton("");
-		JButton[][] btnArray = { { btn1_1, btn1_2, btn1_3 }, { btn2_1, btn2_2, btn2_3 }, { btn3_1, btn3_2, btn3_3 } };
+		JButton[][] btnArray = { { btn1_1, btn2_1, btn3_1 }, { btn1_2, btn2_2, btn3_2 }, { btn1_3, btn2_3, btn3_3 } };
 
 		// Botón en la posición [1][1]
 		btn1_1.setEnabled(false);
@@ -261,6 +261,11 @@ public class Visual extends JFrame {
 						validaGanador(lblMensaje, btnArray);
 					}
 					tablero.switchTurno();
+					contador++;
+					if (contador == 9 && !tablero.hayGanador()) {
+						lblMensaje.setText("Empate");
+
+					}
 					if(npc2) {
 						res = tablero.getP2().juega(tablero,0,0);
 						btnArray[res[0]][res[1]].setText(tablero.validaTurno());
@@ -269,6 +274,11 @@ public class Visual extends JFrame {
 							validaGanador(lblMensaje, btnArray);
 						}
 						tablero.switchTurno();
+						contador++;
+						if (contador == 9 && !tablero.hayGanador()) {
+							lblMensaje.setText("Empate");
+
+						}
 					}
 					act = npc2;
 				}
@@ -292,10 +302,13 @@ public class Visual extends JFrame {
 		if (tablero.isTurno()) {
 
 			tablero.getP2().juega(tablero, i, j);
+			
+			contador++;
 			if (tablero.hayGanador()) {
 				validaGanador(lblMensaje, btnArray);
-			} else if (tablero.getP1().isNpc()) {
+			} else if (tablero.getP1().isNpc() && contador!=9) {
 				tablero.switchTurno();
+				contador++;
 				res = tablero.getP1().juega(tablero, i, j);
 				btnArray[res[0]][res[1]].setText(tablero.validaTurno());
 				btnArray[res[0]][res[1]].setEnabled(false);
@@ -305,14 +318,17 @@ public class Visual extends JFrame {
 			} else {
 				lblMensaje.setText(jugador1.getText() + ", te toca mover");
 			}
-
+			tablero.switchTurno();
 		} else {
 
 			tablero.getP1().juega(tablero, i, j);
+			
+			contador++;
 			if (tablero.hayGanador()) {
 				validaGanador(lblMensaje, btnArray);
-			} else if (tablero.getP2().isNpc()) {
+			} else if (tablero.getP2().isNpc() && contador!=9) {
 				tablero.switchTurno();
+				contador++;
 				res = tablero.getP2().juega(tablero, i, j);
 				btnArray[res[0]][res[1]].setText(tablero.validaTurno());
 				btnArray[res[0]][res[1]].setEnabled(false);
@@ -322,12 +338,11 @@ public class Visual extends JFrame {
 			} else {
 				lblMensaje.setText(jugador2.getText() + ", te toca mover");
 			}
-
+			tablero.switchTurno();
 		}
 
-		tablero.switchTurno();
-		contador++;
-		if (contador == 9) {
+		
+		if (contador == 9 && !tablero.hayGanador()) {
 			lblMensaje.setText("Empate");
 
 		}
